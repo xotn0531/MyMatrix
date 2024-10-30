@@ -48,7 +48,7 @@ exports.readDiary = async function (req, res) {
   try {
     // 객체 비구조화 할당을 사용해 토큰에서 userIdx 추출
     const { userId } = req.verifiedToken;
-    const date = req.query.date || "2024-10-14"; // 쿼리에서 날짜를 받아오거나 기본값 사용
+    const date = req.query.date || "2024-10-30"; // 쿼리에서 날짜를 받아오거나 기본값 사용
 
     // DB에서 일기 조회
     const selectDiaryByDateRows = await indexDao.selectDiaryByDate(userId, date);

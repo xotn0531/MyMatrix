@@ -53,10 +53,14 @@ exports.selectDiaryByDate = async function (userId, date) {
     const selectDiaryByDateParams = [userId, date];
 
     const [row] = await connection.query(selectDiaryByDateQuery, selectDiaryByDateParams);
+    
+    console.log("Query Parameters - userId:", userId, "date:", date); // 파라미터 확인
+    console.log("Query Result:", row); // 결과 확인
+    
     return row;
   } catch (err) {
     console.error(` #### selectDiaryByDate Query/DB error #### \n ${err}`);
-    return false;
+    return [];
   } finally {
     if (connection) connection.release();
   }
