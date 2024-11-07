@@ -22,16 +22,14 @@ exports.insertDiary = async function (
   userId,
   emotionStatus,
   emotionScore,
-  content,
-  consolation,
-  summarize
+  content
 ) {
   let connection;
   try {
     connection = await pool.getConnection(async (conn) => conn);
     const insertDiaryQuery =
-      "INSERT INTO diary (userId, emotionStatus, emotionScore, content, consolation, summarize) VALUES (?, ?, ?, ?, ?, ?);";
-    const insertDiaryParams = [userId, emotionStatus, emotionScore, content, consolation, summarize];
+      "INSERT INTO diary (userId, emotionStatus, emotionScore, content) VALUES (?, ?, ?, ?);";
+    const insertDiaryParams = [userId, emotionStatus, emotionScore, content];
 
     const [row] = await connection.query(insertDiaryQuery, insertDiaryParams);
     return row;

@@ -4,10 +4,10 @@ const indexDao = require("../dao/indexDao");
 exports.createDiary = async function (req, res) {
   try {
     // 요청 본문에서 필요한 값을 비구조화 할당으로 추출
-    const { userId, emotionStatus, emotionScore, content, consolation, summarize } = req.body;
+    const { userId, emotionStatus, emotionScore, content } = req.body;
 
     // 입력값 검증
-    if (!userId || !emotionStatus || !emotionScore || !content || !consolation || summarize === undefined) {
+    if (!userId || !emotionStatus || !emotionScore || !content === undefined) {
       return res.status(400).send({
         isSuccess: false,
         code: 400,
@@ -20,10 +20,8 @@ exports.createDiary = async function (req, res) {
       userId,
       emotionStatus,
       emotionScore,
-      content,
-      consolation,
-      summarize
-    );
+      content
+      );
 
     // 성공적인 응답
     return res.status(200).send({
@@ -48,7 +46,7 @@ exports.readDiary = async function (req, res) {
   try {
     // 객체 비구조화 할당을 사용해 토큰에서 userIdx 추출
     const { userId } = req.verifiedToken;
-    const date = req.query.date || "2024-10-30"; // 쿼리에서 날짜를 받아오거나 기본값 사용
+    const date = req.query.date || "2024-11-07"; // 쿼리에서 날짜를 받아오거나 기본값 사용
 
     // DB에서 일기 조회
     const selectDiaryByDateRows = await indexDao.selectDiaryByDate(userId, date);
