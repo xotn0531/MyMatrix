@@ -4,5 +4,5 @@ const indexController = require('../controller/indexController');
 exports.indexRouter = function (app) {
     // 일기 CRUD API
     app.post("/diary", indexController.createDiary); // create
-    app.get("/diarys", indexController.readDiary);   // read
+    app.get("/diarys", jwtMiddleware,indexController.readDiary);   // read
 };
