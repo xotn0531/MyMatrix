@@ -109,7 +109,7 @@ exports.signin = async function (req, res) {
 
   const [userInfo] = isVaildUser
   const userId = userInfo.userId;
-  console.log(userId);
+  console.log(`User ID: ${userId} 로그인 완료`);
 
   // jwt 발급
   const token = jwt.sign(

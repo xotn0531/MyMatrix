@@ -38,7 +38,7 @@ exports.createDiary = async function (req, res) {
         message: "데이터 저장 실패",
       });
     }
-
+    console.log(`User ID: ${userId} - 일기 입력 완료`);
     return res.status(200).send({
       isSuccess: true,
       code: 200,
@@ -73,7 +73,7 @@ exports.readDiary = async function (req, res) {
         message: "조회된 데이터가 없습니다.",
       });
     }
-
+    console.log(`User ID: ${userId} - 일기 조회 완료`);
     // 감정 점수를 JSON 형태로 변환
     const formattedData = selectDiaryByDateRows.map((row) => ({
       ...row,
